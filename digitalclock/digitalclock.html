@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Digital Clock</title>
+
+	<link rel="stylesheet" type="text/css" href="digiStyles.css">
+
+	 <link rel="stylesheet" href="project/font-awesome/css/font-awesome.min.css"/>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+      
+</head>
+
+<body onload="startTime();">
+   <div id="display"></div>
+   <div id = "meridian"></div>
+   <div id = "dateToday"></div>
+
+   <div id = "icon">
+     <i class="fa fa-clock-o myIcon" aria-hidden="true" onclick="openPopUp();"></i>
+   </div>
+
+   <div id = "popup">     
+
+       <h2 id = "title">Set alarm</h2>
+
+      <div id = "alarmInput">
+
+      <img id = "close" src = "nav-close.png" alt ="close" height="25" width="25" onclick="closePopUp();">
+
+        <div class = "h">
+        <label class="hours">
+            Hours
+            <input class = "inHours" id= "inHours" type="number" value="0" min="0" max="24" />
+        </label>
+        </div>
+
+       <div class = "min">
+        <label class="minutes">
+            Minutes
+            <input class = "inMins" id= "inMins" type="number" value="0" min="0" max = "60"/>
+        </label>
+       </div>
+
+       <div class = "sec">
+        <label class="seconds">
+            Seconds
+            <input class = "inSecs" id= "inSecs" type="number" value="0" min="0" max = "60" />
+        </label>
+      </div>
+         
+     </div>
+
+         <div class="button-holder">
+            <button id="alarm-set">Set</button>
+            <button id="alarm-clear">Clear</button>
+          </div>
+
+       
+   </div>
+
+   <script type = "text/javascript">
+     function openPopUp(){
+       document.getElementById('popup').style.display = "block";
+     }
+
+     function closePopUp(){
+      document.getElementById('popup').style.display = "none";
+
+      document.getElementById('inHours').value = 0;
+      document.getElementById('inMins').value = 0;
+      document.getElementById('inSecs').value = 0;
+
+     }
+    
+
+   function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    var ampm = today.getHours() >= 12 ? 'PM' : 'AM';
+    var meridiem = ampm;
+    
+    var dd= today.getDate();
+    var mm = today.getMonth() + 1;
+    var yyyy = today.getFullYear(); 
+
+    m = checkTime(m);
+    s = checkTime(s);
+    h = checkTime(h);
+    document.getElementById('display').innerHTML =
+    h + ":" + m + ":" + s;
+
+    document.getElementById('meridian').innerHTML = meridiem;
+
+    var formatDate = dd + "/" + mm + "/" + yyyy;
+    document.getElementById('dateToday').innerHTML = formatDate;
+
+    var t = setTimeout(startTime, 500);
+
+    if (h > 12) {
+      h = h - 12;
+      meridiem = "PM";
+    }
+
+    // 0 AM and 0 PM should read as 12
+    if (h === 0) {
+     h = 12;    
+    }
+
+  }
+  function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+  }
+
+
+//alarm
+
+     function alarm() {
+    timer = "";
+    note = document.arlm.message.value;
+    if (note == '') {note = 'ALARM!!';}
+
+    hrs = document.arlm.hr.value;
+    min = document.arlm.mts.value;
+    apm = document.arlm.am_pm.value;
+
+  if (document.arlm.time.selectedIndex==0) { timer = "2"; }
+  if (document.arlm.time.selectedIndex==1) { timer = "5"; }
+  if (document.arlm.time.selectedIndex==2) { timer = "10"; }
+  if (document.arlm.time.selectedIndex==3) { timer = "15"; }
+  if (document.arlm.time.selectedIndex==4) { timer = "20"; }
+  if (document.arlm.time.selectedIndex==5) { timer = "30"; }
+
+ if ((document.hours.clock.value == hrs) &&
+    (document.minutes.clock.value == min) &&
+    (document.ampm.clock.value == apm))
+    {
+   musicwin=window.open("","","width=200,height=50")
+  if (navigator.appName=="Explorer")
+   musicwin.document.write("<body onLoad=\"setTimeout('location.reload();window.focus()'," + timer*60*1000 + ");\"><bgsound src=" + sound + " loop='finite'>" + note)
+  else
+   musicwin.document.write("<body onLoad=\"setTimeout('history.go(0);window.focus()'," + timer*60*1000 + ");\"><embed src=" + sound + " hidden='true' border='0' autostart='true' loop='false'>" + note)
+   musicwin.document.close(); return false; }
+
+ if ((document.hours.clock.value == hrs) &&
+    (document.minutes.clock.value == min) &&
+    (document.ampm.clock.value == apm) &&
+    (document.arlm.music.checked == true)) {
+   musicwin=window.open("","","width=200,height=50")
+  if (navigator.appName=="Explorer")
+   musicwin.document.write("<bgsound src=" + sound + " loop='infinite'>" + note)
+  else
+   musicwin.document.write("<embed src=" + sound + " hidden='true' border='0' autostart='true' loop='true'>" + note)
+   musicwin.document.close(); return false; }
+
+ if (document.arlm.snooze.checked == true) { document.arlm.music.checked = true }
+
+ if ((document.arlm.snooze.checked == true) && (document.arlm.time.value == "")) {
+ alert('You have not set the\nminutes for snooze!'); return false; }
+
+ if (document.arlm.snooze.checked == false) {
+ document.arlm.time.value = ""; }
+
+ if ((document.hours.clock.value == hrs) &&
+    (document.minutes.clock.value == min) &&
+    (document.ampm.clock.value == apm) &&
+    (document.arlm.snooze.checked == false)) {
+ alert(note); return false; }
+
+ if (hrs == '') {alert('The Hour field is empty'); return false}
+ if (min == '') {alert('The Minute field is empty'); return false}
+ if (apm == '') {alert('The am/pm field is empty'); return false}
+
+ if (hrs.length == 1) {document.arlm.hr.value = '0' + hrs}
+ if (min.length == 1) {document.arlm.mts.value = '0' + min}
+ if (hrs.length > 2) {alert('The Hour is wrongly typed.'); return false}
+ if (min.length > 2) {alert('The Minute is wrongly typed.'); return false}
+ if (apm != 'am' && apm != 'pm' ) {alert('The am/pm is wrongly typed.'); return false}
+
+ setTimeout("alarm()", 1000);}
+
+
+   </script>
+
+
+<!--http://www.sivamdesign.com/scripts/dwld/alarm1.html-->
+</body>
+</html>

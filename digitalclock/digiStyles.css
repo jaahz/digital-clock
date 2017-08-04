@@ -1,0 +1,177 @@
+body{
+	background-color: black;
+}
+
+#display{
+	padding: 250px 500px 0px 500px;
+	font-size: 85px;
+	text-align:center;
+	font-family:"LCDBOLD";
+	color: #3dbbf8;
+}
+
+#meridian{
+	position: absolute;
+	top: 225px;
+	left: 793px;
+	font-size: 28px;
+	font-family:"LCDBOLD";
+	font-style: "normal";
+	color: #3dbbf8;
+}
+
+#dateToday{
+	position: absolute;
+	top: 225px;
+	left: 552px;
+	font-size: 28px;
+	font-family:"LCDBOLD";
+	font-style: "normal";
+	color: #3dbbf8;
+}
+
+
+@font-face {
+	font-family: 'LCDBOLD';
+	src: url('./LCDBOLD.eot');
+	src: local('LCDBOLD'), url('./LCDBOLD.woff') format('woff'), url('./LCDBOLD.ttf') format('truetype');
+}
+/* use this class to attach this font to any element i.e. <p class="fontsforweb_fontid_523">Text with this font applied</p> */
+.fontsforweb_fontid_523 {
+	font-family: 'LCDBOLD' !important;
+}
+
+.myIcon{
+	font-family: FontAwesome;
+	color: #0cb49b;
+    font-size: 60px!important;
+    position: absolute;
+    top: 365px;
+    left: 642px;
+    cursor: pointer;
+}
+
+#popup{
+	width: 500px;
+	height: 300px;
+	background-color: #fff;
+	position: absolute;
+	top:200px;
+	left: 500px;
+	display:none;
+}
+
+#title{
+	padding: 30px 200px 0px 200px;
+}
+
+.h{
+	width: 100px;
+	height: 80px;
+	background-color: #d0d0d0;
+	position: relative;
+	top: -25px;
+	left: 15px;
+	text-align: center;
+}
+
+.hours{
+    position: relative;
+    top: 10px;
+	font: 14px "verdana";
+}
+
+.inHours{
+	position:relative;
+    top: 10px;
+    width: 60px;
+    height: 20px;
+}
+
+.min{
+    width: 100px;
+	height: 80px;
+	background-color: #d0d0d0;
+	position: relative;
+	top: -105px;
+	left: 150px;
+	text-align: center;
+
+}
+
+.minutes{
+    position: relative;
+    top: 10px;
+	font: 14px "verdana";
+}
+
+.inMins{
+    position:relative;
+    top: 10px;
+    width: 60px;
+    height: 20px;
+}
+
+
+.sec{
+	width: 100px;
+	height: 80px;
+	background-color: #d0d0d0;
+	position: relative;
+	top: -185px;
+	left: 285px;
+	text-align: center;
+}
+
+.seconds{
+	position: relative;
+    top: 10px;
+	font: 14px "verdana";
+}
+
+.inSecs{
+    position:relative;
+    top: 10px;
+    width: 60px;
+    height: 20px;
+}
+
+
+#alarmInput{
+	padding: 5px 50px 0px 50px;
+
+}
+
+.button-holder{
+	position:relative;
+	top: -130px;
+	margin-left: 4.7cm;
+	margin-right:4.7cm;
+}
+
+#alarm-set{
+   font: 14px "verdana";
+   color: #fff;
+   background-color: #85d1e2;
+   border: none;
+   padding: 12px 15px;
+   cursor:pointer;
+}
+
+#alarm-clear{
+   font: 14px "verdana";
+   color: #fff;
+   background-color: #f4a5b1;
+   border: none;
+   padding: 12px 15px;
+   position:relative;
+   left: 10px;
+   cursor:pointer;
+}
+
+#close{
+	position: relative;
+	top: -70px;
+	left: 410px;
+	cursor:pointer;
+}
